@@ -64,6 +64,10 @@ server.port=8081
 
 ## Cómo probar con Postman
 
+Importa la colección incluida :  
+**`EcoMarket-Auth-Login-JWT.postman_collection.json`**  
+**`EcoMarket-Usuarios-Postman-Collection.json`**  
+
 1. **Registrar usuario:**
    - `POST /api/usuarios/registro`
    - Body:
