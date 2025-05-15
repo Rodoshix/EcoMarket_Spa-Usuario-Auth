@@ -17,10 +17,10 @@ public class UsuarioController {
 
     // Crear nuevo usuario (registro)
     @PostMapping("/registro")
-    public ResponseEntity<Usuario> registrarUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<?> registrarUsuario(@RequestBody Usuario usuario) {
         if (usuarioService.emailExiste(usuario.getEmail())) {
-            return ResponseEntity.badRequest().build(); // Email ya registrado
-        }
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Ya existe un usuario con ese correo electrónico.");
+    }
         Usuario nuevoUsuario = usuarioService.registrarUsuario(usuario);
         return ResponseEntity.ok(nuevoUsuario);
     }
