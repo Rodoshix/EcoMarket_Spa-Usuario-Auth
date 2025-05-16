@@ -1,6 +1,6 @@
 # EcoMarket SPA - Microservicio de Usuarios y Autenticación
 
-Este repositorio contiene el microservicio de **Usuarios y Autenticación** para el sistema EcoMarket SPA. Permite registrar usuarios, autenticar mediante JWT, y proteger rutas según roles como `ADMIN`, `CLIENTE`, etc.
+Este repositorio contiene el microservicio de **Usuarios y Autenticación** para el sistema EcoMarket SPA del proyecto semestral FullStack_1. Permite registrar usuarios, autenticar mediante JWT, y proteger rutas según roles como `ADMIN`, `CLIENTE`, etc.
 
 ---
 
