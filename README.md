@@ -23,7 +23,7 @@ Este repositorio contiene el microservicio de **Usuarios y Autenticación** para
 ### Base de datos
 
 - Motor: MySQL (MariaDB compatible)
-- Nombre: `inventario_db`
+- Nombre: `usuarios_db`
 - Usuario: `root`
 - Contraseña: *(vacía por defecto en XAMPP)*
 
