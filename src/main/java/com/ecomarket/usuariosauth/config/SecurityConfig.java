@@ -23,6 +23,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/**", "/api/usuarios/registro", "/api/usuarios/buscar").permitAll()
                 .requestMatchers("/api/usuarios/**").hasRole("ADMIN") // ← requiere rol ADMIN
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**","/swagger-ui.html").permitAll() // Permitir acceso a Swagger
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

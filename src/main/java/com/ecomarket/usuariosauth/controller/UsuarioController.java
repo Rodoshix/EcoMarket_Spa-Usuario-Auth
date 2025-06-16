@@ -2,6 +2,11 @@ package com.ecomarket.usuariosauth.controller;
 
 import com.ecomarket.usuariosauth.model.Usuario;
 import com.ecomarket.usuariosauth.services.UsuarioService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +29,11 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     // Crear nuevo usuario (registro)
+    @Operation(summary = "Registrar nuevo usuario")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Usuario creado exitosamente"),
+        @ApiResponse(responseCode = "409", description = "Correo electrónico ya existe")
+    })
     @PostMapping("/registro")
     public ResponseEntity<?> registrarUsuario(@RequestBody Usuario usuario) {
         if (usuarioService.emailExiste(usuario.getEmail())) {
@@ -34,6 +44,11 @@ public class UsuarioController {
     }
 
     // Obtener usuario por email (por ejemplo, para login)
+    @Operation(summary = "Buscar usuario por email")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Usuario encontrado"),
+        @ApiResponse(responseCode = "404", description = "Usuario no encontrado")
+    })
     @GetMapping("/buscar")
     public ResponseEntity<Usuario> buscarPorEmail(@RequestParam String email) {
         Optional<Usuario> usuarioOpt = usuarioService.buscarPorEmail(email);
@@ -41,6 +56,8 @@ public class UsuarioController {
     }
 
     // Eliminar usuario (opcional)
+    @Operation(summary = "Eliminar usuario por ID")
+    @ApiResponse(responseCode = "204", description = "Usuario eliminado correctamente")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarUsuario(@PathVariable Long id) {
         usuarioService.eliminarUsuario(id);
@@ -48,6 +65,8 @@ public class UsuarioController {
     }
 
     // Obtener todos los usuarios (opcional)
+    @Operation(summary = "Listar todos los usuarios")
+    @ApiResponse(responseCode = "200", description = "Lista de usuarios obtenida correctamente")
     @GetMapping
     public ResponseEntity<Iterable<Usuario>> obtenerTodos() {
         return ResponseEntity.ok(usuarioService.obtenerTodos());
