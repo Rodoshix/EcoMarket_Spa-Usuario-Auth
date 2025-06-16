@@ -21,7 +21,8 @@ public class SecurityConfig {
         return http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**", "/api/usuarios/registro", "/api/usuarios/buscar").permitAll()
+                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/api/usuarios/registro", "/api/usuarios/buscar").permitAll()
                 .requestMatchers("/api/usuarios/**").hasRole("ADMIN") // ← requiere rol ADMIN
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**","/swagger-ui.html").permitAll() // Permitir acceso a Swagger
                 .anyRequest().authenticated()
