@@ -25,6 +25,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/usuarios/registro", "/api/usuarios/buscar").permitAll()
                 .requestMatchers("/api/usuarios/**").hasRole("ADMIN") // ← requiere rol ADMIN
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**","/swagger-ui.html").permitAll() // Permitir acceso a Swagger
+                .requestMatchers("/api/v2/usuarios/**").permitAll() // Permitir acceso a la versión enriquecida con HATEOAS
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
