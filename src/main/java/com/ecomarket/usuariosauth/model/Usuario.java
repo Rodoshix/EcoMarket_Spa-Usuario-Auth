@@ -28,21 +28,24 @@ public class Usuario {
     private Long id;
 
     @NotBlank(message = "El nombre es obligatorio")
-    @Schema(description = "Nombre completo del usuario", example = "Ana González")
+    @Size(max = 100, message = "El nombre no debe superar los 100 caracteres")
+    @Schema(description = "Nombre completo del usuario", example = "Ana González", maxLength = 100)
     private String nombre;
 
     @NotBlank(message = "El correo electrónico es obligatorio")
     @Email(message = "El correo electrónico no es válido")
+    @Size(max = 100, message = "El correo no debe superar los 100 caracteres")
     @Column(unique = true)
-    @Schema(description = "Correo electrónico del usuario. Debe ser único", example = "ana@correo.cl")
+    @Schema(description = "Correo electrónico del usuario. Debe ser único", example = "ana@correo.cl", maxLength = 100)
     private String email;
 
     @NotBlank(message = "La contraseña es obligatoria")
-    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
-    @Schema(description = "Contraseña de acceso del usuario", example = "secreta123")
+    @Size(min = 8, max = 100, message = "La contraseña debe tener entre 8 y 100 caracteres")
+    @Schema(description = "Contraseña de acceso del usuario", example = "secreta123", minLength = 8, maxLength = 100)
     private String password;
 
     @NotBlank(message = "El rol es obligatorio")
-    @Schema(description = "Rol del usuario en el sistema", example = "CLIENTE")
+    @Size(max = 50, message = "El rol no debe superar los 50 caracteres")
+    @Schema(description = "Rol del usuario en el sistema", example = "CLIENTE", maxLength = 50)
     private String rol;  // Ej: "ADMIN", "CLIENTE", "VENDEDOR"
 }
